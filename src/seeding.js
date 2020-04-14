@@ -50,10 +50,10 @@
     // }
 
     const orders = [
-        { fullname: "Тимофей Черешников", status: "process", price: 500, good: "Бумага для принтера", date: 1582739937251, id: 1 },
-        { fullname: "Максим Черешников", status: "new", price: 700, good: "Краски для принтера", date: 1584261846002, id: 2 },
-        { fullname: "Вячеслав Староброд", status: "process", price: 2700, good: "Полимерная ванна", date: 1585140602196, id: 3 },
-        { fullname: "Виктор Лумпа", status: "process", price: 1200, good: "Катриджи для принтера", date: 1586003912029, id: 4 },
+        { fullname: "Тимофей Черешников 1", status: "process", price: 500, good: "Бумага для принтера", date: 1582739937251, id: 1 },
+        { fullname: "Максим Черешников 2", status: "new", price: 700, good: "Краски для принтера", date: 1584261846002, id: 2 },
+        { fullname: "Вячеслав Староброд 3", status: "process", price: 2700, good: "Полимерная ванна", date: 1585140602196, id: 3 },
+        { fullname: "Виктор Лумпа 4", status: "process", price: 1200, good: "Катриджи для принтера", date: 1586003912029, id: 4 },
         { fullname: "Оксана Воронов", status: "archived", price: 1200, good: "Катриджи для принтера", date: 1586290820593, id: 5 },
         { fullname: "Дмитрий Черешников", status: "archived", price: 2700, good: "Полимерная ванна", date: 1584627917925, id: 6 },
         { fullname: "Дмитрий Попов", status: "archived", price: 12000, good: "Принтер", date: 1583266649518, id: 7 },

@@ -1,4 +1,19 @@
-// Главный файл скрипта для index.html.
+// Главный файл скрипта для index.html (основное приложение).
 
 // Состояние приложения на странице index.html.
-const state = {}
+const state = {
+
+}
+
+// Подписаться на событие update базы данных.
+Database.addEventListener("update", update)
+
+update()
+
+/* 
+    Функция вызывает функцию, которая обновляет колонку 
+    "Последние просматриваемые".
+*/
+function update () {
+    updateLastReviewedList()
+}

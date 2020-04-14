@@ -5,6 +5,14 @@
 
 	// БД.
 	const database = {
+		// Последние просматриваемые заказы.
+		lastReviewed: {
+			// Сколько должно быть последних просматриваемых заказов.
+			maxLength: 4,
+			// id тех заказов, которые просматривали.
+			orderIds: [1, 2, 3, 4]
+		},
+		
 		// Каждый элемент массива orders - отдельный заказ.
 		orders: [
 			// id заказа, ФИО заказчика, Заказанный товар, Цена товара, Статус заказа, Дата заказа.
@@ -58,7 +66,11 @@
 		// Наполнение БД
 	==================== */
 
-	const api = {}
+	/*
+		api - не просто объект, а экземпляр класса EventEmitter. Теперь можно 
+		подписываться на события, которые могут возникать в базе данных.
+	*/
+	const api = new EventEmitter
 
 	// Метод записывает в БД заказы для отладки проекта.
 	api.seed = function seed (orders) {
@@ -76,6 +88,60 @@
 		}
 
 		return null
+	}
+
+	// Функция возвращает последние просматриваемые заказы.
+	api.getLastReviewed = function getLastReviewed () {
+		// Просто id заказов.
+		// return database.lastReviewed.orderIds
+		// Заказы.
+		return database.lastReviewed.orderIds.map(x => api.getOrderById(x))
+	}
+
+	/*
+		Функция добавляет заказ в последние просматриваемые заказы. 
+		Принимает id последнего просмотренного заказа.
+	*/
+	api.addLastReviewed = function addLastReviewed (orderId) {
+		/*
+			Вставить последний просмотренный заказ в начало массива последних 
+			заказов. Если в массиве станет заказов больше, чем максимально 
+			разрешенное количество, последний в массиве заказ убрать.
+		*/
+		// Если последний просмотренный заказ уже находится в массиве:
+		if (database.lastReviewed.orderIds.includes(orderId)) {
+			const index = database.lastReviewed.orderIds.indexOf(orderId)
+
+			// Если просмотренный заказ не находится вначале массива.
+			if (index !== 0) {
+				// Поместить последний заказ в начало массива.
+				database.lastReviewed.orderIds.
+					unshift(database.lastReviewed.orderIds[index])
+
+				/*
+					Начиная с места, где был последний заказ, сдвинуть элементы 
+					влево (поместить на место последнего заказа элемент справа).
+				*/
+				for (let i = index + 1; 
+					i < database.lastReviewed.orderIds.length - 1; i++) {
+					database.lastReviewed.orderIds[i] = database.lastReviewed.orderIds[i + 1]
+				}
+
+				// Удалить последний элемент массива.
+				database.lastReviewed.orderIds.pop()
+			}
+		}
+		
+		// Если последний просмотренный заказ уже находится в массиве:
+		else {
+			// Массив из id не более maxLength последних заказов.
+			database.lastReviewed.orderIds = 
+				[orderId, ...database.lastReviewed.orderIds].
+					slice(0, database.lastReviewed.maxLength)
+		}
+		
+		// Сообщить об изменении базы данных (вызвать событие update).
+		api.emit("update")
 	}
 
 	// Сделать api доступным снаружи функции IIFE как Database.
