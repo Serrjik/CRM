@@ -8,7 +8,13 @@ const state = {
 // Подписаться на событие update базы данных.
 Database.addEventListener("update", update)
 
+init()
 update()
+
+// Функция вызывается единожды при инициализации приложения.
+function init () {
+    
+}
 
 /* 
     Функция вызывает функцию, которая обновляет колонку 
@@ -16,4 +22,10 @@ update()
 */
 function update () {
     updateLastReviewedList()
+}
+
+// Функция изменяет состояние.
+function setState (obj) {
+	Object.assign(state, obj)
+	update()
 }

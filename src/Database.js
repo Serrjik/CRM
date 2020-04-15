@@ -14,13 +14,12 @@
 		},
 		
 		// Каждый элемент массива orders - отдельный заказ.
-		orders: [
-			// id заказа, ФИО заказчика, Заказанный товар, Цена товара, Статус заказа, Дата заказа.
-			{ id: 1, fullname: "Алексей Данчин", good: "Бумага для принтера", price: 500, status: "new", date: Date.now() },
-			{ id: 2, fullname: "Серьгей Лукян", good: "Краски для принтера", price: 2000, status: "process", date: Date.now() },
-			{ id: 3, fullname: "Мария Крава", good: "Принтер", price: 12000, status: "back", date: Date.now() }
-		]
+		// id заказа, ФИО заказчика, Заказанный товар, Цена товара, Статус заказа, Дата заказа.
+		orders: []
 	}
+
+	// Загрузить БД из localStorage.
+	load()
 
 	/* ====================
 		Наполнение БД
@@ -76,6 +75,10 @@
 	api.seed = function seed (orders) {
 		// Записать копию массива ради защиты от мутаций.
 		database.orders = getCopy(orders)
+		// Сохранить состояние БД.
+		save()
+		// Сообщить об изменении базы данных (вызвать событие update).
+		api.emit("update")
 	}
 
 	// Метод возвращает заказ по его id.
@@ -140,6 +143,8 @@
 					slice(0, database.lastReviewed.maxLength)
 		}
 		
+		// Сохранить состояние БД.
+		save()
 		// Сообщить об изменении базы данных (вызвать событие update).
 		api.emit("update")
 	}
@@ -147,8 +152,29 @@
 	// Сделать api доступным снаружи функции IIFE как Database.
 	window.Database = api
 
+	// Функция возвращает копию объекта.
 	function getCopy (x) {
 		return JSON.parse(JSON.stringify(x))
+	}
+
+	/* 
+		Функция сохраняет текущую БД в localStorage. Должна вызываться 
+		каждый раз, когда изменяется состояние БД.
+	*/
+	function save () {
+		localStorage.setItem('__CRM_DATABASE__', JSON.stringify(database))
+	}
+
+	// Функция загружает БД из localStorage.
+	function load () {
+		// Если в localStorage уже присутствует сохранённая БД:
+		if (localStorage.getItem('__CRM_DATABASE__')) {
+			// Объединить сохранённую БД с текущим состоянием БД.
+			Object.assign(
+				database, 
+				JSON.parse(localStorage.getItem('__CRM_DATABASE__'))
+			)
+		}
 	}
 
 	// Функция возвращает случайное целое число от 0 до max невключительно.

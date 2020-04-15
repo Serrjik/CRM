@@ -18,37 +18,37 @@
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted ">Режимы</h6>
 
 					<ul class="nav flex-column">
-						<li class="nav-item">
-							<a class="nav-link active" href="#">
-								<img src="./assets/data-collection.png" alt="" style="width: 30px">
-								Все заказы
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<img src="./assets/new.png" alt="" style="width: 30px">
-								Новые
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<img src="./assets/innovation.png" alt="" style="width: 30px">
-								На исполнение
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<img src="./assets/back.png" alt="" style="width: 30px">
-								Возврат
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<img src="./assets/compressed.png" alt="" style="width: 30px">
-								Заархивированные
-							</a>
-						</li>
-					</ul>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html#">
+                                <img src="./assets/data-collection.png" alt="" style="width: 30px">
+                                Все заказы
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='index.html#{"status":"new"}'>
+                                <img src="./assets/new.png" alt="" style="width: 30px">
+                                Новые
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='index.html#{"status":"process"}'>
+                                <img src="./assets/innovation.png" alt="" style="width: 30px">
+                                На исполнение
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='index.html#{"status":"back"}'>
+                                <img src="./assets/back.png" alt="" style="width: 30px">
+                                Возврат
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href='index.html#{"status":"archived"}'>
+                                <img src="./assets/compressed.png" alt="" style="width: 30px">
+                                Заархивированные
+                            </a>
+                        </li>
+                    </ul>
 
 					<h6
 						class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -213,7 +213,7 @@
 	<!-- Шаблон ссылки на последний просматриваемый заказ. -->
 	<template data-reviewed>
 		<li class="nav-item">
-			<a class="nav-link" href="#">
+			<a class="nav-link" href='editor.html#{"orderId":%ID%}'>
 				<img src="./assets/arrow.png" alt="" style="width: 30px">
 				%FULLNAME%
 			</a>

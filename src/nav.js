@@ -21,8 +21,13 @@ function updateLastReviewedList () {
 		// Сделать копию шаблона ссылки на заказ вместе со всем содержимым.
 		const liElement = template.cloneNode(true)
 
-		// Заменить в копии шаблона ссылки на заказ флаг на имя клиента.
-		liElement.innerHTML = liElement.innerHTML.replace(/%FULLNAME%/g, order.fullname)
+		/*
+			Заменить в копии шаблона ссылки на заказ 
+			флаги на имя клиента и id заказа.
+		*/
+		liElement.innerHTML = liElement.innerHTML
+			.replace(/%FULLNAME%/g, order.fullname)
+			.replace(/%ID%/g, order.id)
 		/*
 			Смонтировать копию шаблона в контейнер для 
 			последних просматриваемых заказов.
