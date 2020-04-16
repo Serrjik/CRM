@@ -21,50 +21,6 @@
 	// Загрузить БД из localStorage.
 	load()
 
-	/* ====================
-		Наполнение БД
-	==================== */
-
-	// const names = ["Алексей Данчин", "Серьгей Лукян", "Мария Крава", 
-	// 	"Сергей Григорович", "Иван Иванов", "Иван Петров", "Джуд Лоу", 
-	// 	"Олег Тактаров", "Александр Уснич", "Аня Нехай", "Наташа Петрова", 
-	// 	"Мария Распутина", "Дмитрий Титовец", "Максим Пашкевич"]
-
-	// const goods = ["Бумага для принтера", "Краски для принтера", "Принтер", 
-	// 	"Фотоальбом", "Полимерная ванна"]
-
-	// const prices = [100, 300, 500, 1000, 1500, 1800, 2000, 12000, 16000, 15500, 
-	// 	20000 ]
-
-	// const statuses = ["new", "process", "back", "archived", ]
-
-	// for (let i = 4; i < 101; i++) {
-	// 	// const id = i
-
-	// 	const name = names[getRandomInt(names.length)]
-
-	// 	const good = goods[getRandomInt(goods.length)]
-
-	// 	const price = prices[getRandomInt(prices.length)]
-
-	// 	const status = statuses[getRandomInt(statuses.length)]
-		
-	// 	const order = {
-	// 		"id": i,
-	// 		"fullname": name,
-	// 		"good": good,
-	// 		"price": price,
-	// 		"status": status,
-	// 		"date": Date.now()
-	// 	}
-		
-	// 	database.orders.push(order)
-	// }
-
-	/* ====================
-		// Наполнение БД
-	==================== */
-
 	/*
 		api - не просто объект, а экземпляр класса EventEmitter. Теперь можно 
 		подписываться на события, которые могут возникать в базе данных.
@@ -115,27 +71,16 @@
 		if (database.lastReviewed.orderIds.includes(orderId)) {
 			const index = database.lastReviewed.orderIds.indexOf(orderId)
 
-			// Если просмотренный заказ не находится вначале массива.
+			// Если просмотренный заказ находится НЕ вначале массива:
 			if (index !== 0) {
-				// Поместить последний заказ в начало массива.
-				database.lastReviewed.orderIds.
-					unshift(database.lastReviewed.orderIds[index])
-
-				/*
-					Начиная с места, где был последний заказ, сдвинуть элементы 
-					влево (поместить на место последнего заказа элемент справа).
-				*/
-				for (let i = index + 1; 
-					i < database.lastReviewed.orderIds.length - 1; i++) {
-					database.lastReviewed.orderIds[i] = database.lastReviewed.orderIds[i + 1]
-				}
-
-				// Удалить последний элемент массива.
-				database.lastReviewed.orderIds.pop()
+				// Вырезать из массива последний просмотренный заказ:
+				database.lastReviewed.orderIds.splice(index, 1)
+				// Поместить последний просмотренный заказ в начало массива.
+				database.lastReviewed.orderIds.unshift(orderId)
 			}
 		}
 		
-		// Если последний просмотренный заказ уже находится в массиве:
+		// Если последний просмотренный заказ ещё НЕ находится в массиве:
 		else {
 			// Массив из id не более maxLength последних заказов.
 			database.lastReviewed.orderIds = 
@@ -176,9 +121,4 @@
 			)
 		}
 	}
-
-	// Функция возвращает случайное целое число от 0 до max невключительно.
-	// function getRandomInt(max) {
-	// 	return Math.floor(Math.random() * Math.floor(max));
-	// }
 })();
