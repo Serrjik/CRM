@@ -12,7 +12,8 @@
 			// id тех заказов, которые просматривали.
 			orderIds: [1, 2, 3, 4]
 		},
-		
+		// Максимальное количество отображаемых на странице заказов.
+		maxOrders: 10,
 		// Каждый элемент массива orders - отдельный заказ.
 		// id заказа, ФИО заказчика, Заказанный товар, Цена товара, Статус заказа, Дата заказа.
 		orders: []
@@ -35,6 +36,65 @@
 		save()
 		// Сообщить об изменении базы данных (вызвать событие update).
 		api.emit("update")
+	}
+
+	/* 
+		Метод возвращает объект с заказами, подходящими под фильтр, 
+		и количеством страниц, по которым разбились эти заказы. 
+		*/
+	api.getOrders = function getOrders (state) {
+		// Копия состояния приложения.
+		state = getCopy(state)
+
+		// Копия всех заказов.
+		let orders = getCopy(database.orders)
+
+		// Если фильтр по ИФО не пустой:
+		if (state.fullname) {
+			const fullnameLowercase = state.fullname.toLowerCase()
+
+			orders = orders.filter(x => x.fullname.toLowerCase().includes(fullnameLowercase))
+		}
+
+		// Если фильтр по товару не пустой:
+		if (state.good) {
+			orders = orders.filter(x => x.good === state.good)
+		}
+
+		// Если фильтр по статусу не пустой:
+		if (state.status) {
+			orders = orders.filter(x => x.status === state.status)
+		}
+
+		// Если фильтр по минимальной сумме заказа не пустой:
+		if (state.minprice) {
+			orders = orders.filter(x => x.price >= state.minprice)
+		}
+
+		// Если фильтр по максимальной сумме заказа не пустой:
+		if (state.maxprice) {
+			orders = orders.filter(x => x.price <= state.maxprice)
+		}
+
+		// Если фильтр по минимальной дате заказа не пустой:
+		if (state.mindate) {
+			const minDate = Date.parse(state.mindate)
+			orders = orders.filter(x => x.date >= minDate)
+		}
+
+		// Если фильтр по максимальной дате заказа не пустой:
+		if (state.maxdate) {
+			const maxDate = Date.parse(state.maxdate)
+			orders = orders.filter(x => x.date <= maxDate)
+		}
+
+		return {
+			orders: orders.slice(0, database.maxOrders),
+			// Текущая страница.
+			currentPage: 1,
+			// Количество страниц.
+			commonPages: Math.ceil(orders.length / database.maxOrders)
+		}
 	}
 
 	// Метод возвращает заказ по его id.

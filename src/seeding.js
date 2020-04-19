@@ -54,10 +54,10 @@
         { fullname: "Максим Черешников 2", status: "new", price: 700, good: "Краски для принтера", date: 1584261846002, id: 2 },
         { fullname: "Вячеслав Староброд 3", status: "process", price: 2700, good: "Полимерная ванна", date: 1585140602196, id: 3 },
         { fullname: "Виктор Лумпа 4", status: "process", price: 1200, good: "Катриджи для принтера", date: 1586003912029, id: 4 },
-        { fullname: "Оксана Воронов", status: "archived", price: 1200, good: "Катриджи для принтера", date: 1586290820593, id: 5 },
-        { fullname: "Дмитрий Черешников", status: "archived", price: 2700, good: "Полимерная ванна", date: 1584627917925, id: 6 },
-        { fullname: "Дмитрий Попов", status: "archived", price: 12000, good: "Принтер", date: 1583266649518, id: 7 },
-        { fullname: "Алексей Карманов", status: "archived", price: 1200, good: "Катриджи для принтера", date: 1585529901153, id: 8 },
+        { fullname: "Оксана Воронов 5", status: "archived", price: 1200, good: "Катриджи для принтера", date: 1586290820593, id: 5 },
+        { fullname: "Дмитрий Черешников 6", status: "archived", price: 2700, good: "Полимерная ванна", date: 1584627917925, id: 6 },
+        { fullname: "Дмитрий Попов 7", status: "archived", price: 12000, good: "Принтер", date: 1583266649518, id: 7 },
+        { fullname: "Алексей Карманов 8", status: "archived", price: 1200, good: "Катриджи для принтера", date: 1585529901153, id: 8 },
         { fullname: "Алексей Вечных", status: "back", price: 12000, good: "Принтер", date: 1585140428022, id: 9 },
         { fullname: "Серьгей Староброд", status: "new", price: 500, good: "Бумага для принтера", date: 1584738077830, id: 10 },
         { fullname: "Виктор Воронов", status: "archived", price: 2700, good: "Полимерная ванна", date: 1583776450928, id: 11 },
@@ -247,9 +247,9 @@
         { fullname: "Максим Вечных", status: "back", price: 12000, good: "Принтер", date: 1584226620802, id: 195 },
         { fullname: "Оксана Дядков", status: "new", price: 1200, good: "Катриджи для принтера", date: 1585036948712, id: 196 },
         { fullname: "Оксана Староброд", status: "archived", price: 1200, good: "Катриджи для принтера", date: 1582417639068, id: 197 },
-        { fullname: "Оксана Карманов", status: "process", price: 2700, good: "Полимерная ванна", date: 1583015016539, id: 198 },
-        { fullname: "Дмитрий Данчин", status: "new", price: 1200, good: "Катриджи для принтера", date: 1584752579976, id: 199 },
-        { fullname: "Серьгей Вечных", status: "new", price: 12000, good: "Принтер", date: 1584920337579, id: 200 }
+        { fullname: "Оксана Карманов 198", status: "process", price: 2700, good: "Полимерная ванна", date: 1583015016539, id: 198 },
+        { fullname: "Дмитрий Данчин 199", status: "new", price: 1200, good: "Катриджи для принтера", date: 1584752579976, id: 199 },
+        { fullname: "Серьгей Вечных 200", status: "new", price: 12000, good: "Принтер", date: 1584920337579, id: 200 }
     ]
 
     Database.seed(orders)
