@@ -30,7 +30,8 @@ update()
 // Функция вызывается единожды при инициализации приложения.
 function init () {
 	// Повесить обработчик события отжатия клавиши на поле ввода фильтра по фИО.
-	document.querySelector('[data-filter-fullname]').addEventListener('keyup', function () {
+	document.querySelector('[data-filter-fullname]')
+		.addEventListener('keyup', function () {
 		// Если в строке ввода есть хотя бы 1 символ:
 		if (this.value) {
 			setState({
@@ -50,7 +51,8 @@ function init () {
 		Повесить обработчик окончания изменения элемента 
 		на селект фильтра по товару. 
 	*/
-	document.querySelector('[data-filter-good]').addEventListener('change', function (event) {
+	document.querySelector('[data-filter-good]')
+		.addEventListener('change', function (event) {
 		// Если в селекте выбран товар:
 		if (this.value) {
 			setState({
@@ -70,7 +72,8 @@ function init () {
 		Повесить обработчик окончания изменения элемента 
 		на селект фильтра по статусу. 
 	*/
-	document.querySelector('[data-filter-status]').addEventListener('change', function (event) {
+	document.querySelector('[data-filter-status]')
+		.addEventListener('change', function (event) {
 		// Если в селекте выбран статус заказа:
 		if (this.value) {
 			setState({
@@ -90,7 +93,8 @@ function init () {
 		Повесить обработчик изменения значения элемента 
 		на поле ввода фильтра по минимальной сумме.
 	*/
-	document.querySelector('[data-filter-minprice]').addEventListener('input', function (event) {
+	document.querySelector('[data-filter-minprice]')
+		.addEventListener('input', function (event) {
 		const minPrice = parseFloat(this.value)
 		
 		// Если в строке ввода есть число:
@@ -112,7 +116,8 @@ function init () {
 		Повесить обработчик изменения значения элемента 
 		на поле ввода фильтра по максимальной сумме.
 	*/
-	document.querySelector('[data-filter-maxprice]').addEventListener('input', function (event) {
+	document.querySelector('[data-filter-maxprice]')
+		.addEventListener('input', function (event) {
 		const maxPrice = parseFloat(this.value)
 		
 		// Если в строке ввода есть число:
@@ -134,11 +139,13 @@ function init () {
 		Повесить обработчик изменения значения элемента 
 		на поле ввода фильтра по минимальной дате заказа.
 	*/
-	document.querySelector('[data-filter-mindate]').addEventListener('input', function (event) {
+	document.querySelector('[data-filter-mindate]')
+		.addEventListener('input', function (event) {
 		// Если в строке ввода есть дата:
 		if (this.value) {
+			const date = new Date(this.value)
 			setState({
-				mindate: this.value
+				mindate: date.getTime()
 			})
 		}
 
@@ -154,11 +161,13 @@ function init () {
 		Повесить обработчик изменения значения элемента 
 		на поле ввода фильтра по максимальной дате заказа.
 	*/
-	document.querySelector('[data-filter-maxdate]').addEventListener('input', function (event) {
+	document.querySelector('[data-filter-maxdate]')
+		.addEventListener('input', function (event) {
 		// Если в строке ввода есть дата:
 		if (this.value) {
+			const date = new Date(this.value)
 			setState({
-				maxdate: this.value
+				maxdate: date.getTime()
 			})
 		}
 

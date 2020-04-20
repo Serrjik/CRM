@@ -78,14 +78,12 @@
 
 		// Если фильтр по минимальной дате заказа не пустой:
 		if (state.mindate) {
-			const minDate = Date.parse(state.mindate)
-			orders = orders.filter(x => x.date >= minDate)
+			orders = orders.filter(x => x.date >= state.mindate)
 		}
 
 		// Если фильтр по максимальной дате заказа не пустой:
 		if (state.maxdate) {
-			const maxDate = Date.parse(state.maxdate)
-			orders = orders.filter(x => x.date <= maxDate)
+			orders = orders.filter(x => x.date <= state.maxdate)
 		}
 
 		return {
