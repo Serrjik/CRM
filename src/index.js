@@ -23,159 +23,63 @@ const state = {
 
 // Подписаться на событие update базы данных.
 Database.addEventListener("update", update)
+// Подписаться на событие update раутера.
+Router.addEventListener("update", () => {
+	const hashObject = Router.getHashObject()
+	setState(hashObject)
+})
 
 init()
 update()
 
 // Функция вызывается единожды при инициализации приложения.
 function init () {
-	// Повесить обработчик события отжатия клавиши на поле ввода фильтра по фИО.
-	document.querySelector('[data-filter-fullname]')
-		.addEventListener('keyup', function () {
-		// Если в строке ввода есть хотя бы 1 символ:
-		if (this.value) {
-			setState({
-				fullname: this.value
-			})
+	const hashObject = Router.getHashObject()
+
+	byFilterNames(filterName => {
+		// Если в хэш-объекте указан выбранный фильтр:
+		if (hashObject[filterName]) {
+			// Установить поле фильтра согласно хэш-объекту.
+			document.querySelector(`[data-filter-${filterName}]`).value = hashObject[filterName]
+			// Установить состояние согласно хэш-объекту.
+			state[filterName] = hashObject[filterName]
 		}
 
-		// Если в строке ввода НЕТ ни одного символа:
-		else {
-			setState({
-				fullname: null
-			})
-		}
-	})
+		/* 
+			Повесить обработчики событий отжатия клавиши, изменения значения, 
+			окончания изменения элемента на поля ввода и селекты фильтров. 
+		*/
+		const element = document.querySelector(`[data-filter-${filterName}]`)
+		element.addEventListener('keyup', handler)
+		element.addEventListener('change', handler)
+		// element.addEventListener('input', handler)
 
-	/* 
-		Повесить обработчик окончания изменения элемента 
-		на селект фильтра по товару. 
-	*/
-	document.querySelector('[data-filter-good]')
-		.addEventListener('change', function (event) {
-		// Если в селекте выбран товар:
-		if (this.value) {
-			setState({
-				good: this.value
-			})
-		}
+		function handler () {
+			// Если в строке ввода есть хотя бы 1 символ:
+			if (this.value) {
+				// Если фильтр по дате:
+				if (filterName === 'mindate' || filterName === 'maxdate') {
+					const date = new Date(this.value)
 
-		// Если значение селекта "Все":
-		else {
-			setState({
-				good: null
-			})
-		}
-	})
-
-	/* 
-		Повесить обработчик окончания изменения элемента 
-		на селект фильтра по статусу. 
-	*/
-	document.querySelector('[data-filter-status]')
-		.addEventListener('change', function (event) {
-		// Если в селекте выбран статус заказа:
-		if (this.value) {
-			setState({
-				status: this.value
-			})
-		}
-
-		// Если значение селекта "Все":
-		else {
-			setState({
-				status: null
-			})
-		}
-	})
-
-	/* 
-		Повесить обработчик изменения значения элемента 
-		на поле ввода фильтра по минимальной сумме.
-	*/
-	document.querySelector('[data-filter-minprice]')
-		.addEventListener('input', function (event) {
-		const minPrice = parseFloat(this.value)
-		
-		// Если в строке ввода есть число:
-		if (minPrice) {
-			setState({
-				minprice: minPrice
-			})
-		}
-
-		// Если в строке ввода НЕТ числа:
-		else {
-			setState({
-				minprice: null
-			})
-		}
-	})
-
-	/* 
-		Повесить обработчик изменения значения элемента 
-		на поле ввода фильтра по максимальной сумме.
-	*/
-	document.querySelector('[data-filter-maxprice]')
-		.addEventListener('input', function (event) {
-		const maxPrice = parseFloat(this.value)
-		
-		// Если в строке ввода есть число:
-		if (maxPrice) {
-			setState({
-				maxprice: maxPrice
-			})
-		}
-
-		// Если в строке ввода НЕТ числа:
-		else {
-			setState({
-				maxprice: null
-			})
-		}
-	})
-
-	/* 
-		Повесить обработчик изменения значения элемента 
-		на поле ввода фильтра по минимальной дате заказа.
-	*/
-	document.querySelector('[data-filter-mindate]')
-		.addEventListener('input', function (event) {
-		// Если в строке ввода есть дата:
-		if (this.value) {
-			const date = new Date(this.value)
-			setState({
-				mindate: date.getTime()
-			})
-		}
-
-		// Если в строке ввода НЕТ даты:
-		else {
-			setState({
-				mindate: null
-			})
-		}
-	})
-
-	/* 
-		Повесить обработчик изменения значения элемента 
-		на поле ввода фильтра по максимальной дате заказа.
-	*/
-	document.querySelector('[data-filter-maxdate]')
-		.addEventListener('input', function (event) {
-		// Если в строке ввода есть дата:
-		if (this.value) {
-			const date = new Date(this.value)
-			setState({
-				maxdate: date.getTime()
-			})
-		}
-
-		// Если в строке ввода НЕТ даты:
-		else {
-			setState({
-				maxdate: null
-			})
+					setState({
+						[filterName]: date.getTime()
+					})
+				}
+				
+				// Если фильтр НЕ по дате:
+				else {
+					setState({
+						[filterName]: this.value
+					})
+				}
+			}
+	
+			// Если в строке ввода НЕТ ни одного символа:
+			else {
+				setState({
+					[filterName]: null
+				})
+			}
 		}
 	})
 }
@@ -186,6 +90,19 @@ function init () {
 */
 function update () {
 	updateLastReviewedList()
+
+	byFilterNames(filterName => {
+		const element = document.querySelector(`[data-filter-${filterName}]`)
+
+		// Если установлен фильтр:
+		if (state[filterName]) {
+			element.value = state[filterName]
+		}
+
+		else {
+			element.value = ''
+		}
+	})
 
 	// Объект с заказами, подходящими под фильтр.
 	const answer = Database.getOrders(state)
@@ -199,9 +116,23 @@ function update () {
 	updateTable()
 }
 
-// Функция изменяет состояние приложения на странице.
+// Функция изменяет состояния приложения на странице и раутера.
 function setState (obj) {
 	Object.assign(state, obj)
+
+	// Объект, который передаётся в раутер.
+	const hashObject = {}
+
+	byFilterNames(filterName => {
+		// Если указан выбранный фильтр:
+		if (state[filterName]) {
+			hashObject[filterName] = state[filterName]
+		}
+	})
+
+	// Обновить раутер.
+	Router.setHashObject(hashObject)
+
 	update()
 }
 
@@ -256,5 +187,19 @@ function updateTable () {
 			case 'archived':
 				return 'dark'
 		}
+	}
+}
+
+/* 
+	Функция проходит по всем именам текущих фильтров 
+	и запускает функцию handler, передавая ей текущее имя фильтра. 
+*/
+function byFilterNames (handler) {
+	// Все фильтры.
+	const filterNames = ['fullname', 'good', 'status', 'minprice', 'maxprice', 
+		'mindate', 'maxdate']
+
+	for (const filterName of filterNames) {
+		handler(filterName)
 	}
 }

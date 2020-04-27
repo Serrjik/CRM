@@ -19,7 +19,7 @@
 
 					<ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.html#">
+                            <a class="nav-link active" href='index.html#{"status":""}'>
                                 <img src="./assets/data-collection.png" alt="" style="width: 30px">
                                 Все заказы
                             </a>
@@ -239,7 +239,8 @@
 			<td>%PRICE%</td>
 			<td><div class="badge badge-%STATUS_COLOR%">%STATUS%</div></td>
 			<td>
-				<button class="btn btn-outline-primary btn-sm">Редактировать</button>
+				<a href='editor.html#{"orderId":%ID%}' 
+					class="btn btn-outline-primary btn-sm">Редактировать</a>
 			</td>
 			<td>%DATE%</td>
 		</tr>
