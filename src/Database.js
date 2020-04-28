@@ -87,9 +87,10 @@
 		}
 
 		return {
-			orders: orders.slice(0, database.maxOrders),
+			orders: orders.slice((state.currentPage - 1) * database.maxOrders, 
+				state.currentPage * database.maxOrders),
 			// Текущая страница.
-			currentPage: 1,
+			currentPage: state.currentPage,
 			// Количество страниц.
 			commonPages: Math.ceil(orders.length / database.maxOrders)
 		}

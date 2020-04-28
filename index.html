@@ -18,37 +18,37 @@
 					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted ">Режимы</h6>
 
 					<ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href='index.html#{"status":""}'>
-                                <img src="./assets/data-collection.png" alt="" style="width: 30px">
-                                Все заказы
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"new"}'>
-                                <img src="./assets/new.png" alt="" style="width: 30px">
-                                Новые
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"process"}'>
-                                <img src="./assets/innovation.png" alt="" style="width: 30px">
-                                На исполнение
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"back"}'>
-                                <img src="./assets/back.png" alt="" style="width: 30px">
-                                Возврат
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"archived"}'>
-                                <img src="./assets/compressed.png" alt="" style="width: 30px">
-                                Заархивированные
-                            </a>
-                        </li>
-                    </ul>
+						<li class="nav-item">
+							<a class="nav-link active" href='index.html#{"status":""}'>
+								<img src="./assets/data-collection.png" alt="" style="width: 30px">
+								Все заказы
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"new"}'>
+								<img src="./assets/new.png" alt="" style="width: 30px">
+								Новые
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"process"}'>
+								<img src="./assets/innovation.png" alt="" style="width: 30px">
+								На исполнение
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"back"}'>
+								<img src="./assets/back.png" alt="" style="width: 30px">
+								Возврат
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"archived"}'>
+								<img src="./assets/compressed.png" alt="" style="width: 30px">
+								Заархивированные
+							</a>
+						</li>
+					</ul>
 
 					<h6
 						class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -201,20 +201,27 @@
 					</table>
 				</div>
 				<!-- // Блок с таблицей с заказами. -->
-				
+
+				<!-- Pagination -->
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
-					  <li class="page-item disabled">
-						<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Назад</a>
-					  </li>
-					  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-					  <li class="page-item"><a class="page-link" href="#">2</a></li>
-					  <li class="page-item"><a class="page-link" href="#">3</a></li>
-					  <li class="page-item">
-						<a class="page-link" href="#">Вперед</a>
-					  </li>
+						<li class="page-item" data-pagenav-prev>
+							<a class="page-link" href="#">Назад</a>
+						</li>
+						<li>
+							<ul class="pagination justify-content-center" data-pagination>
+								<li class="page-item active"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+							</ul>
+						</li>
+						<li class="page-item" data-pagenav-next>
+							<a class="page-link" href="#">Вперед</a>
+						</li>
 					</ul>
-				  </nav>
+				</nav>
+				<!-- // Pagination -->
+
 			</main>
 		</div>
 	</div>

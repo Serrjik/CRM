@@ -54,6 +54,11 @@ function init () {
 		element.addEventListener('change', handler)
 		// element.addEventListener('input', handler)
 
+		// Если в адресную строке есть № текущей страницы с заказами:
+		if (hashObject.currentPage) {
+			state.currentPage = hashObject.currentPage
+		}
+
 		function handler () {
 			// Если в строке ввода есть хотя бы 1 символ:
 			if (this.value) {
@@ -81,6 +86,39 @@ function init () {
 				})
 			}
 		}
+	})
+
+	// Добавить обработчик клика кнопке пагинации "Назад".
+	document.querySelector('[data-pagenav-prev]').addEventListener('click', event => {
+		event.preventDefault()
+
+		if (state.currentPage !== 1) {
+			setState({
+				currentPage: state.currentPage - 1
+			})
+		}
+	})
+
+	// Добавить обработчик клика кнопке пагинации "Вперед".
+	document.querySelector('[data-pagenav-next]').addEventListener('click', event => {
+		event.preventDefault()
+
+		if (state.currentPage !== state.commonPages) {
+			setState({
+				currentPage: state.currentPage + 1
+			})
+		}
+	})
+
+	// Добавить обработчик клика контейнеру пагинации с кнопками с номерами страниц.
+	document.querySelector('[data-pagination]').addEventListener('click', event => {
+		event.preventDefault()
+
+		// Номер текущей страницы с заказами.
+		const pageNumber = parseInt(event.target.textContent)
+		setState({
+			currentPage: pageNumber
+		})
 	})
 }
 
@@ -114,6 +152,7 @@ function update () {
 	state.commonPages = answer.commonPages
 
 	updateTable()
+	updatePagination()
 }
 
 // Функция изменяет состояния приложения на странице и раутера.
@@ -122,6 +161,11 @@ function setState (obj) {
 
 	// Объект, который передаётся в раутер.
 	const hashObject = {}
+
+	// Добавить № текущей страницы с заказами в адресную строку.
+	if (state.currentPage !== 1) {
+		hashObject.currentPage = state.currentPage
+	}
 
 	byFilterNames(filterName => {
 		// Если указан выбранный фильтр:
@@ -201,5 +245,49 @@ function byFilterNames (handler) {
 
 	for (const filterName of filterNames) {
 		handler(filterName)
+	}
+}
+
+// Функция обновляет пагинацию.
+function updatePagination () {
+	// Точка монтирования кнопок с номерами пагинации.
+	const numbersMount = document.querySelector('[data-pagination]')
+	const prevButton = document.querySelector('[data-pagenav-prev]')
+	const nextButton = document.querySelector('[data-pagenav-next]')
+
+	numbersMount.innerHTML = ''
+
+	// Создание и добавление в DOM кнопок с номерами пагинации.
+	for (let i = 0; i < state.commonPages; i++) {
+		const liElement = document.createElement('li')
+		liElement.classList.add('page-item')
+
+		// Если кнопка соответствует текущей странице заказов:
+		if (state.currentPage === i + 1) {
+			liElement.classList.add('active')
+		}
+
+		const aElement = document.createElement('a')
+		aElement.classList.add('page-link')
+		aElement.setAttribute('href', '#')
+		aElement.textContent = i + 1
+
+		liElement.append(aElement)
+		numbersMount.append(liElement)
+	}
+
+	// <li class="page-item active"><a class="page-link" href="#">1</a></li>
+
+	prevButton.classList.remove('disabled')
+	nextButton.classList.remove('disabled')
+
+	// Если текущая страница заказов - первая:
+	if (state.currentPage === 1) {
+		prevButton.classList.add('disabled')
+	}
+
+	// Если текущая страница заказов - последняя:
+	if (state.currentPage === state.commonPages) {
+		nextButton.classList.add('disabled')
 	}
 }
