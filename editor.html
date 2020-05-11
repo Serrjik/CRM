@@ -2,172 +2,178 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Серьгей Лазонка</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Серьгей Лазонка</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="height: 100vh;">
-                <div class="sidebar-sticky">
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted ">
-                        Режимы</h6>
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="col-md-2 d-none d-md-block bg-light sidebar" style="height: 100vh;">
+				<div class="sidebar-sticky">
+					<h6
+						class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted ">
+						Режимы</h6>
 
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="index.html#">
-                                <img src="./assets/data-collection.png" alt="" style="width: 30px">
-                                Все заказы
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"new"}'>
-                                <img src="./assets/new.png" alt="" style="width: 30px">
-                                Новые
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"process"}'>
-                                <img src="./assets/innovation.png" alt="" style="width: 30px">
-                                На исполнение
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"back"}'>
-                                <img src="./assets/back.png" alt="" style="width: 30px">
-                                Возврат
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href='index.html#{"status":"archived"}'>
-                                <img src="./assets/compressed.png" alt="" style="width: 30px">
-                                Заархивированные
-                            </a>
-                        </li>
-                    </ul>
+					<ul class="nav flex-column">
+						<li class="nav-item">
+							<a class="nav-link active" href="index.html#">
+								<img src="./assets/data-collection.png" alt="" style="width: 30px">
+								Все заказы
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"new"}'>
+								<img src="./assets/new.png" alt="" style="width: 30px">
+								Новые
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"process"}'>
+								<img src="./assets/innovation.png" alt="" style="width: 30px">
+								На исполнение
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"back"}'>
+								<img src="./assets/back.png" alt="" style="width: 30px">
+								Возврат
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href='index.html#{"status":"archived"}'>
+								<img src="./assets/compressed.png" alt="" style="width: 30px">
+								Заархивированные
+							</a>
+						</li>
+					</ul>
 
-                    <h6
-                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        Последние просматриваемые</h6>
-                    <ul class="nav flex-column mb-2" data-reviewed-list>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Максим Анатольевич
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Серьгей Дмитриевич
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Ольга Арбузова
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Максимус Валькиш
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+					<h6
+						class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+						Последние просматриваемые</h6>
+					<ul class="nav flex-column mb-2" data-reviewed-list>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								<img src="./assets/arrow.png" alt="" style="width: 30px">
+								Максим Анатольевич
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								<img src="./assets/arrow.png" alt="" style="width: 30px">
+								Серьгей Дмитриевич
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								<img src="./assets/arrow.png" alt="" style="width: 30px">
+								Ольга Арбузова
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								<img src="./assets/arrow.png" alt="" style="width: 30px">
+								Максимус Валькиш
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 d-flex flex-column p-2">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Серьгей Лазонка</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label class="col-sm-1 col-form-label">ID:</label>
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 d-flex flex-column p-2">
+				<div class="card">
+					<div class="card-header">
+						<h2 data-fullname></h2>
+					</div>
+					<div class="card-body">
+						<div class="form-group row">
+							<label class="col-sm-1 col-form-label">ID:</label>
+							<div class="col-sm-11">
+								<input type="text" class="form-control-plaintext" readonly value="2" data-order-id>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-1 col-form-label">ФИО:</label>
+							<div class="col-sm-11">
+								<input type="text" class="form-control" value="Серьгей Лазонка" data-order-fullname>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-1 col-form-label">Заказ:</label>
+							<div class="col-sm-11">
+								<select class="form-control" data-order-good>
+									<option value="Бумага для принтера">Бумага для принтера</option>
+									<option value="Краски для принтера">Краски для принтера</option>
+									<option value="Картриджи для принтера">Картриджи для принтера</option>
+									<option value="Принтер">Принтер</option>
+									<option value="Полимерная ванна">Полимерная ванна</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+                            <label class="col-sm-1 col-form-label">Цена:</label>
                             <div class="col-sm-11">
-                                <input type="text" class="form-control-plaintext" readonly value="2">
+                                <input type="number" class="form-control" value="2" data-order-price>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-1 col-form-label">ФИО:</label>
-                            <div class="col-sm-11">
-                                <input type="text" class="form-control" value="Серьгей Лазонка">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-1 col-form-label">Заказ:</label>
-                            <div class="col-sm-11">
-                                <select class="form-control">
-                                    <option selected>Бумага для принтера</option>
-                                    <option>Краски для принтера</option>
-                                    <option>Картриджи для принтера</option>
-                                    <option>Принтер</option>
-                                    <option>Полимерная ванна</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-1 col-form-label">Дата:</label>
-                            <div class="col-sm-11">
-                                <input type="date" class="form-control" value="2020-03-03">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-1 col-form-label">Статус:</label>
-                            <div class="col-sm-11">
-                                <select class="form-control">
-                                    <option selected>На исполнение</option>
-                                    <option>Возврат</option>
-                                    <option>Заархивированно</option>
-                                    <option>Новый</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-end">
-                        <button class="btn btn-success">Сохранить</button>
-                        <!-- <button class="btn btn-success" disabled>Сохранить</button> -->
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
+						<div class="form-group row">
+							<label class="col-sm-1 col-form-label">Дата:</label>
+							<div class="col-sm-11">
+								<input type="date" class="form-control" value="2020-03-03" data-order-date>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-1 col-form-label">Статус:</label>
+							<div class="col-sm-11">
+								<select class="form-control" data-order-status>
+									<option value="process">На исполнение</option>
+									<option value="back">Возврат</option>
+									<option value="archived">Заархивированно</option>
+									<option value="new">Новый</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer d-flex justify-content-end">
+						<button class="btn btn-success" data-save>Сохранить</button>
+						<!-- <button class="btn btn-success" disabled>Сохранить</button> -->
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
 
-    <!-- Шаблон ссылки на последний просматриваемый заказ. -->
-    <template data-reviewed>
-        <li class="nav-item">
-            <a class="nav-link" href='editor.html#{"orderId":%ID%}'>
-                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                %FULLNAME%
-            </a>
-        </li>
-    </template>
-    <!-- // Шаблон ссылки на последний просматриваемый заказ. -->
+	<!-- Шаблон ссылки на последний просматриваемый заказ. -->
+	<template data-reviewed>
+		<li class="nav-item">
+			<a class="nav-link" href='editor.html#{"orderId":%ID%}'>
+				<img src="./assets/arrow.png" alt="" style="width: 30px">
+				%FULLNAME%
+			</a>
+		</li>
+	</template>
+	<!-- // Шаблон ссылки на последний просматриваемый заказ. -->
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+	</script>
 
-    <script src="src/EventEmitter.js"></script>
-    <script src="src/Router.js"></script>
-    <script src="src/Database.js"></script>
-    <script src="src/nav.js"></script>
+	<script src="src/EventEmitter.js"></script>
+	<script src="src/Router.js"></script>
+	<script src="src/Database.js"></script>
+	<script src="src/nav.js"></script>
 	<script src="src/seeding.js"></script>
-    <script src="src/editor.js"></script>
+	<script src="src/editor.js"></script>
 </body>
 
 </html>

@@ -38,6 +38,22 @@
 		api.emit("update")
 	}
 
+	// Метод обновляет заказ в БД. Принимает id заказа и объект с данными заказа.
+	api.updateOrderById = function updateOrderById (orderId, updated) {
+		// Заказ, соответствующий принятому orderId.
+		const order = database.orders.find(x => x.id === orderId)
+
+		// Обновить информацию о заказе.
+		order.fullname = updated.fullname
+		order.good = updated.good
+		order.price = updated.price
+		order.date = updated.date
+		order.status = updated.status
+
+		// Сохранить состояние БД.
+		save()
+	}
+
 	/* 
 		Метод возвращает объект с заказами, подходящими под фильтр, 
 		и количеством страниц, по которым разбились эти заказы. 
@@ -53,7 +69,8 @@
 		if (state.fullname) {
 			const fullnameLowercase = state.fullname.toLowerCase()
 
-			orders = orders.filter(x => x.fullname.toLowerCase().includes(fullnameLowercase))
+			orders = orders.filter(x => x.fullname.toLowerCase()
+				.includes(fullnameLowercase))
 		}
 
 		// Если фильтр по товару не пустой:
