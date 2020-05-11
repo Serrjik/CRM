@@ -21,24 +21,31 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">ФИО:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" value="Серьгей Лазонка">
+                            <input type="text" class="form-control" 
+                                value="Серьгей Лазонка" data-order-fullname>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Заказ:</label>
                         <div class="col-sm-10">
-                            <select class="form-control">
-                                <option selected>Бумага для принтера</option>
-                                <option>Краски для принтера</option>
-                                <option>Картриджи для принтера</option>
-                                <option>Принтер</option>
-                                <option>Полимерная ванна</option>
+                            <select class="form-control" data-order-good>
+                                <option value="Бумага для принтера">Бумага для принтера</option>
+                                <option value="Краски для принтера">Краски для принтера</option>
+                                <option value="Картриджи для принтера">Картриджи для принтера</option>
+                                <option value="Принтер">Принтер</option>
+                                <option value="Полимерная ванна">Полимерная ванна</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Цена:</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" value="2" data-order-price>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-end">
-                    <button class="btn btn-success">Отправить</button>
+                    <button class="btn btn-success" data-add>Отправить</button>
                 </div>
             </div>
         </div>
