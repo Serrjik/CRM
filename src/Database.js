@@ -171,18 +171,25 @@
 	}
 
 	// Метод создаёт новый заказ и возвращает его id.
-	api.createOrder = function createOrder ({ fullname, status, price, good, date }) {
-		// id нового заказа (id последнего заказа + 1).
-		const newId = database.orders[database.orders.length - 1].id + 1
+	// api.createOrder = function createOrder ({ fullname, status, price, good, date }) {
+	api.createOrder = function createOrder (order) {
+		// Копия объекта данных для нового заказа.
+		order = getCopy(order)
 
-		database.orders.push({fullname, status, price, good, date, id: newId})
+		order.status = "new"
+		order.date = Date.now()
+
+		// id нового заказа (самый большой id заказа в БД + 1).
+		order.id = Math.max(0, ...database.orders.map(x => x.id)) + 1
+
+		database.orders.push(order)
 
 		// Сохранить состояние БД.
 		save()
 		// Сообщить об изменении базы данных (вызвать событие update).
 		api.emit("update")
 		
-		return newId
+		return order.id
 	}
 
 	// Сделать api доступным снаружи функции IIFE как Database.

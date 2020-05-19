@@ -3,17 +3,21 @@
 // Состояние приложения на странице order.html.
 const state = {}
 
-// Повесить обработчик клика на кнопку "Отправить".
-document.querySelector('[data-add]').addEventListener('click', () => {
-    const newOrder = {
-        fullname: document.querySelector('[data-order-fullname]').value,
-        status: "new",
-        price: document.querySelector('[data-order-price]').value,
-        good: document.querySelector('[data-order-good]').value,
-        date: new Date().getTime()
-    }
+init()
+update()
 
-    const lastId = Database.createOrder(newOrder)
-    console.log(lastId)
-    window.location = `./editor.html#{"orderId":${lastId}}`
-})
+function init () {
+	// Повесить обработчик клика на кнопку "Отправить".
+	document.querySelector('[data-createorder]').addEventListener('click', () => {
+		const order = {
+			fullname: document.querySelector('[data-order-fullname]').value,
+			good: document.querySelector('[data-order-good]').value,
+			price: parseInt(document.querySelector('[data-order-price]').value),
+		}
+
+		const orderId = Database.createOrder(order)
+		location.href = `editor.html#{"orderId":${orderId}}`
+	})
+}
+
+function update () {}
